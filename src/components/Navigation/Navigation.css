@@ -2,6 +2,20 @@
   background-color: var(--black);
 }
 
+.navigation-link {
+  color: var(--white);
+  opacity: 0.5;
+}
+
+.navigation-link:hover {
+  opacity: 1;
+}
+
+.nav-link-active-true {
+  color: var(--clr-primary-400);
+  opacity: 1;
+}
+
 .small-screen-navigation {
   position: fixed;
   width: 100%;
@@ -14,6 +28,10 @@
   flex-grow: 0;
   flex-shrink: 0;
   display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem 0;
 }
 
 @media screen and (min-width: 500px) {
@@ -22,6 +40,6 @@
   }
 
   .large-screen-navigation {
-    display: block;
+    display: flex;
   }
 }
