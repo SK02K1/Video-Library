@@ -4,6 +4,7 @@
   /* BASE */
   --white: #ffffff;
   --black: #131313;
+  --gray: #232323;
 
   /* PRIMARY */
   --clr-primary-500: #e95050;
@@ -14,6 +15,16 @@
 }
 
 .App {
+  height: 100vh;
+  background-color: var(--gray);
+  color: var(--white);
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+}
+
+.content {
+  height: inherit;
+  overflow-y: scroll;
+  flex-grow: 1;
+  padding: 1rem 1rem 6rem 1rem;
 }

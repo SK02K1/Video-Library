@@ -1,0 +1,27 @@
+.navigation {
+  background-color: var(--black);
+}
+
+.small-screen-navigation {
+  position: fixed;
+  width: 100%;
+  height: 3.5rem;
+  bottom: 0;
+}
+
+.large-screen-navigation {
+  flex-basis: 10rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: none;
+}
+
+@media screen and (min-width: 500px) {
+  .small-screen-navigation {
+    display: none;
+  }
+
+  .large-screen-navigation {
+    display: block;
+  }
+}
