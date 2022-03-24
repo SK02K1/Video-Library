@@ -14,7 +14,10 @@ export const Navigation = () => {
         activeLink={activeNavLink}
         handleLinkChange={updateActiveNavLink}
       />
-      <SmallScreenNavigation />
+      <SmallScreenNavigation
+        activeLink={activeNavLink}
+        handleLinkChange={updateActiveNavLink}
+      />
     </>
   );
 };
