@@ -1,6 +1,8 @@
 :root {
-  /* COLORS */
+  /* TYPOGRAPHY */
+  --ff-secondary: 'NaftaLight';
 
+  /* COLORS */
   /* BASE */
   --white: #ffffff;
   --black: #131313;
