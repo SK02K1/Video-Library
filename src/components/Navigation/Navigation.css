@@ -12,7 +12,7 @@
 }
 
 .nav-link-active-true {
-  color: var(--clr-primary-400);
+  color: var(--white);
   opacity: 1;
 }
 
