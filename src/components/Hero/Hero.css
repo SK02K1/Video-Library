@@ -1,5 +1,5 @@
 .hero {
-  height: 60vh;
+  height: 50vh;
   background-color: var(--black);
   display: flex;
   flex-direction: column;
@@ -15,12 +15,13 @@
 }
 
 .hero-cta {
-  margin-top: 2rem;
+  margin: 2rem 0;
+  padding: 1rem 2rem;
 }
 
 @media screen and (min-width: 800px) {
   .hero-text {
-    font-size: 5rem;
+    font-size: 3rem;
     line-height: 7.25rem;
   }
 }
