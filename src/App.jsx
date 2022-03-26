@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { Home } from './pages';
+import { Home, Videos } from './pages';
 import { Navigation } from './components';
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/videos' element={<Videos />} />
       </Routes>
     </div>
   );
