@@ -1,0 +1,27 @@
+.hero {
+  height: 50vh;
+  background-color: var(--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--br);
+}
+
+.hero-text {
+  font-family: var(--ff-secondary);
+  font-size: 2rem;
+  line-height: 3.25rem;
+}
+
+.hero-cta {
+  margin: 2rem 0;
+  padding: 1rem 2rem;
+}
+
+@media screen and (min-width: 800px) {
+  .hero-text {
+    font-size: 3rem;
+    line-height: 7.25rem;
+  }
+}
