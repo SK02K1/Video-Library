@@ -1,15 +1,19 @@
 import { useEffect } from 'react';
 import { useAxios } from '../../hooks';
-import { useVideos } from '../../contexts';
-import { VIDEOS_ACTIONS } from '../../utils';
+import { useCategories, useVideos } from '../../contexts';
+import { filterVideosByTag, VIDEOS_ACTIONS } from '../../utils';
 import { FilterChipBar, Loader, VideoDetailsCard } from '../../components';
 
 export const Videos = () => {
-  const { data, error, showLoader } = useAxios('/api/videos');
+  const { data, showLoader } = useAxios('/api/videos');
   const {
     videosState: { videos },
     dispatchVideos,
   } = useVideos();
+
+  const {
+    categoriesState: { selectedCategory },
+  } = useCategories();
 
   useEffect(() => {
     if (data) {
@@ -20,12 +24,17 @@ export const Videos = () => {
     }
   }, [data, dispatchVideos]);
 
+  const filteredVideos =
+    selectedCategory === 'All'
+      ? videos
+      : filterVideosByTag(videos, selectedCategory);
+
   return (
     <div className='content'>
       {showLoader && <Loader />}
       <FilterChipBar />
       <div className='grid-container auto videos'>
-        {videos.map((videoDetails) => {
+        {filteredVideos.map((videoDetails) => {
           return (
             <VideoDetailsCard
               key={videoDetails._id}

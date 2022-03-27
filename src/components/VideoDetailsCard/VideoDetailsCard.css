@@ -3,6 +3,8 @@
   border-radius: var(--br);
   display: flex;
   flex-direction: column;
+  max-width: 40rem;
+  max-height: 25rem;
 }
 
 .video-details-card-header {
