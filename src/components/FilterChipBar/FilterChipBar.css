@@ -21,4 +21,5 @@
 
 .filter-active-true {
   background-color: var(--clr-primary-400);
+  border: none;
 }
