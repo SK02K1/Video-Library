@@ -1,23 +1,14 @@
 import './Navigation.css';
+import { useLocation } from 'react-router-dom';
 import { LargeScreenNavigation, SmallScreenNavigation } from './index';
-import { useState } from 'react';
 
 export const Navigation = () => {
-  const [activeNavLink, setActiveNavLink] = useState('/');
-
-  const updateActiveNavLink = (selectedNavLink) =>
-    setActiveNavLink(selectedNavLink);
+  const { pathname } = useLocation();
 
   return (
     <>
-      <LargeScreenNavigation
-        activeLink={activeNavLink}
-        handleLinkChange={updateActiveNavLink}
-      />
-      <SmallScreenNavigation
-        activeLink={activeNavLink}
-        handleLinkChange={updateActiveNavLink}
-      />
+      <LargeScreenNavigation currentPath={pathname} />
+      <SmallScreenNavigation currentPath={pathname} />
     </>
   );
 };
