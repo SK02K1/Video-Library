@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useAxios } from '../../hooks';
 import { useVideos } from '../../contexts';
 import { VIDEOS_ACTIONS } from '../../utils';
-import { Loader } from '../../components';
+import { Loader, VideoDetailsCard } from '../../components';
 
 export const Videos = () => {
   const { data, error, showLoader } = useAxios('/api/videos');
@@ -20,5 +20,19 @@ export const Videos = () => {
     }
   }, [data, dispatchVideos]);
 
-  return <div className='content'>{showLoader && <Loader />}</div>;
+  return (
+    <div className='content'>
+      {showLoader && <Loader />}
+      <div className='grid-container auto videos'>
+        {videos.map((videoDetails) => {
+          return (
+            <VideoDetailsCard
+              key={videoDetails._id}
+              videoDetails={videoDetails}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
 };

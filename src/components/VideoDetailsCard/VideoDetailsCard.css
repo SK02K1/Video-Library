@@ -1,0 +1,46 @@
+.video-details-card {
+  background-color: var(--black);
+  border-radius: var(--br);
+  display: flex;
+  flex-direction: column;
+}
+
+.video-details-card-header {
+  overflow: hidden;
+}
+
+.thumbnail {
+  transition: transform 300ms ease;
+  cursor: pointer;
+}
+
+.thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.creator-details,
+.video-details-card-footer {
+  display: flex;
+  align-items: center;
+}
+
+.video-details-card-footer,
+.video-details-card-body {
+  padding: 1rem 0.5rem;
+}
+
+.video-details-card-controls {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.video-details-card-footer {
+  margin-top: auto;
+  height: max-content;
+  border-top: 1px solid var(--gray);
+}
+
+.creator-avatar {
+  border: 2.5px solid var(--clr-primary-500);
+  padding: 0.2rem;
+}
