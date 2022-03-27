@@ -5,6 +5,7 @@ import App from './App';
 import { makeServer } from './server';
 import './fonts/NaftaLight.woff';
 import './index.css';
+import { CategoriesProvider, VideosProvider } from './contexts';
 
 // Call make Server
 makeServer();
@@ -12,7 +13,11 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <VideosProvider>
+        <CategoriesProvider>
+          <App />
+        </CategoriesProvider>
+      </VideosProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

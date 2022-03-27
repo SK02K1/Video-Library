@@ -20,7 +20,6 @@
   height: 100vh;
   background-color: var(--gray);
   color: var(--white);
-  text-align: center;
   display: flex;
 }
 
