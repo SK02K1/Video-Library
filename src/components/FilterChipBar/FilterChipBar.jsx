@@ -21,11 +21,18 @@ export const FilterChipBar = () => {
     }
   }, [data, dispatchCategories]);
 
+  const filterChipClickHandler = (categoryName) =>
+    dispatchCategories({
+      type: CATEGORIES_ACTIONS.UPDATE_SELECTED_CATEGORY,
+      payload: { selectedCategory: categoryName },
+    });
+
   return (
     <div className='filter-chip-bar m-sm-b'>
       {categories.map(({ _id, categoryName }) => {
         return (
           <div
+            onClick={() => filterChipClickHandler(categoryName)}
             className={`filter-chip filter-active-${
               selectedCategory === categoryName
             }`}
