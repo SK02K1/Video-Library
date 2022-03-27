@@ -1,10 +1,19 @@
+import { useLocation, useNavigate } from 'react-router-dom';
 import './VideoDetailsCard.css';
 
 export const VideoDetailsCard = ({ videoDetails }) => {
   const { _id, title, creator, creatorAvatar } = videoDetails;
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const showSingleVideo = (videoID) => navigate(`${pathname}/${videoID}`);
+
   return (
     <div className='video-details-card'>
-      <div className='video-details-card-header'>
+      <div
+        onClick={() => showSingleVideo(_id)}
+        className='video-details-card-header'
+      >
         <img
           className='thumbnail'
           src={`https://img.youtube.com/vi/${_id}/maxresdefault.jpg`}
