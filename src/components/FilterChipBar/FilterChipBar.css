@@ -1,0 +1,24 @@
+.filter-chip-bar {
+  background-color: var(--black);
+  padding: 0.5rem;
+  border-radius: var(--br);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.filter-chip-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-chip {
+  display: inline-block;
+  background-color: var(--gray);
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.filter-active-true {
+  background-color: var(--clr-primary-400);
+}

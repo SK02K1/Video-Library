@@ -5,7 +5,7 @@ import App from './App';
 import { makeServer } from './server';
 import './fonts/NaftaLight.woff';
 import './index.css';
-import { VideosProvider } from './contexts';
+import { CategoriesProvider, VideosProvider } from './contexts';
 
 // Call make Server
 makeServer();
@@ -14,7 +14,9 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <VideosProvider>
-        <App />
+        <CategoriesProvider>
+          <App />
+        </CategoriesProvider>
       </VideosProvider>
     </BrowserRouter>
   </React.StrictMode>,
