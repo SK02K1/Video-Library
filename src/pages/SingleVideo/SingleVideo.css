@@ -1,0 +1,27 @@
+.player {
+  width: 100%;
+  height: 50vh;
+  border-radius: var(--br);
+}
+
+.video-controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
+  border-radius: var(--br);
+}
+
+.video-controls span {
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+@media screen and (min-width: 800px) {
+  .player {
+    height: 94vh;
+  }
+}
