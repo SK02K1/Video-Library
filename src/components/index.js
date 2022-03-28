@@ -6,3 +6,4 @@ export { VideoDetailsCard } from './VideoDetailsCard/VideoDetailsCard';
 export { FilterChipBar } from './FilterChipBar/FilterChipBar';
 export { LoginForm } from './Forms/LoginForm';
 export { SignupForm } from './Forms/SignupForm';
+export { PrivateRoute } from './PrivateRoute/PrivateRoute';
