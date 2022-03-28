@@ -5,3 +5,4 @@ export { Loader } from './Loader/Loader';
 export { VideoDetailsCard } from './VideoDetailsCard/VideoDetailsCard';
 export { FilterChipBar } from './FilterChipBar/FilterChipBar';
 export { LoginForm } from './Forms/LoginForm';
+export { SignupForm } from './Forms/SignupForm';

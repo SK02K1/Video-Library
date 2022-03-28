@@ -30,3 +30,21 @@ export const handleLogin = async ({
     }
   }
 };
+
+export const handleSignup = async ({ e, navigate, formData, saveUserData }) => {
+  e.preventDefault();
+  try {
+    const { data, status } = await axios.post('/api/auth/signup', formData);
+    if (status === 201) {
+      const { encodedToken, createdUser } = data;
+      saveUserData({ encodedToken, ...createdUser });
+      toast.success('Successfully signed in');
+      navigate('/');
+    }
+  } catch (error) {
+    const { status } = error.response;
+    if (status === 422) {
+      toast.error('Email already registered');
+    }
+  }
+};
