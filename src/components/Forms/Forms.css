@@ -1,7 +1,8 @@
 .form {
   margin: 2.5rem auto;
   padding: 2rem;
-  box-shadow: var(--shadow-2xl);
+  background-color: var(--black);
+  box-shadow: var(--shadow);
   border-radius: var(--br-xl);
   width: 90%;
 }
