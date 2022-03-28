@@ -15,3 +15,25 @@
 .control-name {
   margin-top: 0.5rem;
 }
+
+.user-profile-card {
+  padding: 2rem 1rem;
+  background-color: var(--black);
+  border-radius: var(--br);
+  display: flex;
+  align-items: center;
+}
+.user-avatar {
+  width: 25%;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+@media screen and (min-width: 800px) {
+  .user-avatar {
+    width: 10%;
+  }
+}
