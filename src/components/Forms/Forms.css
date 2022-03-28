@@ -1,0 +1,41 @@
+.form {
+  margin: 2.5rem auto;
+  padding: 2rem;
+  box-shadow: var(--shadow-2xl);
+  border-radius: var(--br-xl);
+  width: 90%;
+}
+
+.form-link {
+  color: var(--clr-primary-400);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: color 200ms ease-in-out;
+}
+
+.form-link:hover {
+  color: var(--clr-primary-500);
+}
+
+.form label {
+  display: inline-block;
+}
+
+.form label,
+.form .input,
+.form .btn {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .form {
+    width: 35%;
+  }
+}

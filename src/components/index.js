@@ -4,3 +4,4 @@ export { CategoryCard } from './CategoryCard/CategoryCard';
 export { Loader } from './Loader/Loader';
 export { VideoDetailsCard } from './VideoDetailsCard/VideoDetailsCard';
 export { FilterChipBar } from './FilterChipBar/FilterChipBar';
+export { LoginForm } from './Forms/LoginForm';

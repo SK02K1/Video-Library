@@ -9,3 +9,5 @@ export {
   useCategories,
   categoriesInitialState,
 } from './categories-context';
+
+export { AuthProvider, useAuth } from './auth-context';
