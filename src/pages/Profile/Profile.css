@@ -1,0 +1,17 @@
+.profile-control {
+  background-color: var(--black);
+  color: var(--white);
+  width: 100%;
+  height: 10rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--br);
+  box-shadow: var(--shadow);
+}
+
+.control-name {
+  margin-top: 0.5rem;
+}
