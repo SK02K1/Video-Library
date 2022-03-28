@@ -9,12 +9,14 @@ const AuthProvider = ({ children }) => {
 
   const saveUserData = (data) => setUserData(data);
 
+  const removeUserData = () => setUserData(null);
+
   useEffect(() => {
     localStorage.setItem('userData', JSON.stringify(userData));
   }, [userData]);
 
   return (
-    <AuthContext.Provider value={{ userData, saveUserData }}>
+    <AuthContext.Provider value={{ userData, saveUserData, removeUserData }}>
       {children}
     </AuthContext.Provider>
   );

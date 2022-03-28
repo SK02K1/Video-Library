@@ -48,3 +48,21 @@ export const handleSignup = async ({ e, navigate, formData, saveUserData }) => {
     }
   }
 };
+
+export const handleLogout = ({ removeUserData, navigate }) => {
+  const logoutPromise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('Successfully logged out');
+    }, 1200);
+  });
+
+  logoutPromise.then(() => {
+    navigate('/');
+    removeUserData();
+  });
+
+  toast.promise(logoutPromise, {
+    loading: 'Logging out',
+    success: (msg) => msg,
+  });
+};

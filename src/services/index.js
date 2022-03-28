@@ -1,1 +1,1 @@
-export { handleLogin, handleSignup } from './authServices';
+export { handleLogin, handleSignup, handleLogout } from './authServices';

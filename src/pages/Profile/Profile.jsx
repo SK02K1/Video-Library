@@ -1,12 +1,16 @@
 import { profileControls } from '../../utils';
-import { Link } from 'react-router-dom';
+import { handleLogout } from '../../services';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts';
 import './Profile.css';
 
 export const Profile = () => {
   const {
     userData: { firstName, lastName, email },
+    removeUserData,
   } = useAuth();
+
+  const navigate = useNavigate();
 
   return (
     <div className='content'>
@@ -18,7 +22,12 @@ export const Profile = () => {
             <span className='lastname'>{lastName}</span>
           </div>
           <div className='email m-xs-t'>{email}</div>
-          <button className='btn btn-danger m-sm-t'>Logout</button>
+          <button
+            onClick={() => handleLogout({ removeUserData, navigate })}
+            className='btn btn-danger m-sm-t'
+          >
+            Logout
+          </button>
         </div>
       </div>
       <div className='profile-controls grid-container auto'>
