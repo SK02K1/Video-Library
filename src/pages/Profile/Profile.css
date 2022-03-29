@@ -1,0 +1,39 @@
+.profile-control {
+  background-color: var(--black);
+  color: var(--white);
+  width: 100%;
+  height: 10rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--br);
+  box-shadow: var(--shadow);
+}
+
+.control-name {
+  margin-top: 0.5rem;
+}
+
+.user-profile-card {
+  padding: 2rem 1rem;
+  background-color: var(--black);
+  border-radius: var(--br);
+  display: flex;
+  align-items: center;
+}
+.user-avatar {
+  width: 25%;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+@media screen and (min-width: 800px) {
+  .user-avatar {
+    width: 10%;
+  }
+}
