@@ -1,6 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { Home, Login, Profile, Signup, SingleVideo, Videos } from './pages';
+import {
+  History,
+  Home,
+  Login,
+  Profile,
+  Signup,
+  SingleVideo,
+  Videos,
+} from './pages';
 import { Navigation, PrivateRoute } from './components';
 import { Toaster } from 'react-hot-toast';
 
@@ -20,6 +28,7 @@ function App() {
         {/* Private Routes */}
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
+          <Route path='/history' element={<History />} />
         </Route>
       </Routes>
     </div>
