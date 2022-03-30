@@ -5,7 +5,7 @@ import { Loader } from '../../components';
 import { useState, useEffect } from 'react';
 import { isAlreadyInHistory } from '../../utils';
 import { useAuth, useVideosData } from '../../contexts';
-import { handleAddToHistory } from '../../services/videosServices';
+import { handleAddToHistory } from '../../services';
 
 export const SingleVideo = () => {
   const { videoID } = useParams();
