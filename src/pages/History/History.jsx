@@ -1,15 +1,32 @@
-import { useVideosData } from '../../contexts';
+import './History.css';
+import { useAuth, useVideosData } from '../../contexts';
 import { VideoDetailsCard } from '../../components';
 import { Link } from 'react-router-dom';
+import { handleClearHistory } from '../../services';
 
 export const History = () => {
   const {
     videosDataState: { history },
+    dispatchVideosData,
   } = useVideosData();
+
+  const {
+    userData: { encodedToken },
+  } = useAuth();
 
   return (
     <div className='content'>
-      <h1 className='text-center text-xl m-xs-tb'>History</h1>
+      <header className='history-header'>
+        <h1 className='text-xl'>History</h1>
+        <button
+          onClick={() =>
+            handleClearHistory({ encodedToken, dispatchVideosData })
+          }
+          className='btn btn-danger'
+        >
+          Clear history
+        </button>
+      </header>
       <div className='grid-container auto m-sm-tb'>
         {history.length ? (
           history.map((videoDetails) => (

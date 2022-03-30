@@ -1,2 +1,2 @@
 export { handleLogin, handleSignup, handleLogout } from './authServices';
-export { handleAddToHistory } from './videosServices';
+export { handleAddToHistory, handleClearHistory } from './videosServices';

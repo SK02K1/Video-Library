@@ -25,3 +25,19 @@ export const handleAddToHistory = async ({
     console.error(error.response);
   }
 };
+
+export const handleClearHistory = async ({
+  encodedToken,
+  dispatchVideosData,
+}) => {
+  try {
+    const { status } = await axios.delete('/api/user/history/all', {
+      headers: { authorization: encodedToken },
+    });
+    if (status === 200) {
+      dispatchVideosData({ type: VIDEOS_ACTIONS.CLEAR_HISTORY });
+    }
+  } catch (error) {
+    console.error(error.response);
+  }
+};
