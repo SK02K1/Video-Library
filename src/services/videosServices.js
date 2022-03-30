@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { VIDEOS_ACTIONS } from '../utils';
+import toast from 'react-hot-toast';
 
 export const handleAddToHistory = async ({
   video,
@@ -36,6 +37,31 @@ export const handleClearHistory = async ({
     });
     if (status === 200) {
       dispatchVideosData({ type: VIDEOS_ACTIONS.CLEAR_HISTORY });
+    }
+  } catch (error) {
+    console.error(error.response);
+  }
+};
+
+export const handleRemoveFromHistory = async ({
+  videoID,
+  userData: { encodedToken },
+  dispatchVideosData,
+}) => {
+  try {
+    const {
+      data: { history },
+      status,
+    } = await axios.delete(`/api/user/history/${videoID}`, {
+      headers: { authorization: encodedToken },
+    });
+
+    if (status === 200) {
+      dispatchVideosData({
+        type: VIDEOS_ACTIONS.UPDATE_HISTORY,
+        payload: { updatedHistory: history },
+      });
+      toast.success('Successfully removed from history');
     }
   } catch (error) {
     console.error(error.response);
