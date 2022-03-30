@@ -3,17 +3,34 @@ import { useParams } from 'react-router-dom';
 import { useAxios } from '../../hooks';
 import { Loader } from '../../components';
 import { useState, useEffect } from 'react';
+import { isAlreadyInHistory } from '../../utils';
+import { useAuth, useVideosData } from '../../contexts';
+import { handleAddToHistory } from '../../services/videosServices';
 
 export const SingleVideo = () => {
   const { videoID } = useParams();
   const { data, showLoader } = useAxios(`/api/video/${videoID}`);
-  const [{ title, description }, setVideoData] = useState({});
+  const [video, setVideo] = useState({});
+  const { title, description } = video;
+  const { userData } = useAuth();
+  const {
+    videosDataState: { history },
+    dispatchVideosData,
+  } = useVideosData();
+  const isInHistory = isAlreadyInHistory(videoID, history);
 
   useEffect(() => {
     if (data?.video) {
-      setVideoData(data.video);
+      setVideo(data.video);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (!isInHistory && userData && video?._id) {
+      const { encodedToken } = userData;
+      handleAddToHistory({ video, encodedToken, dispatchVideosData });
+    }
+  }, [isInHistory, dispatchVideosData, userData, video]);
 
   return (
     <div className='content'>
