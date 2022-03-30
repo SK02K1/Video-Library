@@ -4,9 +4,8 @@ import './VideoDetailsCard.css';
 export const VideoDetailsCard = ({ videoDetails }) => {
   const { _id, title, creator, creatorAvatar } = videoDetails;
   const navigate = useNavigate();
-  const { pathname } = useLocation();
 
-  const showSingleVideo = (videoID) => navigate(`${pathname}/${videoID}`);
+  const showSingleVideo = (videoID) => navigate(`/videos/${videoID}`);
 
   return (
     <div className='video-details-card'>
