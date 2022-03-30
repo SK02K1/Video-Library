@@ -8,6 +8,8 @@ export const videosDataReducer = (state, { type, payload }) => {
       return { ...state, ...payload.videosData };
     case VIDEOS_ACTIONS.UPDATE_HISTORY:
       return { ...state, history: payload.updatedHistory };
+    case VIDEOS_ACTIONS.RESET_VIDEOS_DATA:
+      return { ...state, history: [] };
     default:
       return { ...state };
   }

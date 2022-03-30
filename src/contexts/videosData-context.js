@@ -24,6 +24,8 @@ const VideosDataProvider = ({ children }) => {
         type: VIDEOS_ACTIONS.INITIALIZE_VIDEOS_DATA,
         payload: { videosData: { history } },
       });
+    } else {
+      dispatchVideosData({ type: VIDEOS_ACTIONS.RESET_VIDEOS_DATA });
     }
   }, [userData]);
 
