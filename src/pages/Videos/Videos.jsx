@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { useAxios } from '../../hooks';
-import { useCategories, useVideos } from '../../contexts';
+import { useCategories, useVideosData } from '../../contexts';
 import { filterVideosByTag, VIDEOS_ACTIONS } from '../../utils';
 import { FilterChipBar, Loader, VideoDetailsCard } from '../../components';
 
 export const Videos = () => {
   const { data, showLoader } = useAxios('/api/videos');
   const {
-    videosState: { videos },
-    dispatchVideos,
-  } = useVideos();
+    videosDataState: { videos },
+    dispatchVideosData,
+  } = useVideosData();
 
   const {
     categoriesState: { selectedCategory },
@@ -17,12 +17,12 @@ export const Videos = () => {
 
   useEffect(() => {
     if (data) {
-      dispatchVideos({
+      dispatchVideosData({
         type: VIDEOS_ACTIONS.INITIALIZE_VIDEOS,
         payload: { videos: data.videos },
       });
     }
-  }, [data, dispatchVideos]);
+  }, [data, dispatchVideosData]);
 
   const filteredVideos =
     selectedCategory === 'All'

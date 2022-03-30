@@ -1,8 +1,8 @@
 export {
-  VideosProvider,
-  useVideos,
-  videosInitialState,
-} from './videos-context';
+  VideosDataProvider,
+  useVideosData,
+  videosDataInitialState,
+} from './videosData-context';
 
 export {
   CategoriesProvider,
