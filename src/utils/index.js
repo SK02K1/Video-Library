@@ -5,3 +5,4 @@ export { VIDEOS_ACTIONS } from './Actions/videosActions';
 export { CATEGORIES_ACTIONS } from './Actions/categoriesActions';
 export { filterVideosByTag } from './Video/filterVideosByTag';
 export { profileControls } from './Profile/profileControls';
+export { isAlreadyInHistory } from './Video/isAlreadyInHistory.js';

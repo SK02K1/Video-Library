@@ -34,6 +34,34 @@
 .video-details-card-controls {
   margin-left: auto;
   cursor: pointer;
+  position: relative;
+  padding: 0.5rem;
+}
+
+.video-card-controls {
+  border-radius: var(--br);
+  position: absolute;
+  padding: 1rem;
+  background-color: var(--gray);
+  width: max-content;
+  right: 1.5rem;
+  bottom: 2.5rem;
+}
+
+.video-card-control {
+  border-radius: var(--br);
+  background: var(--black);
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.video-card-control:hover {
+  background-color: var(--clr-primary-400);
+}
+
+.video-card-controls span {
+  margin-right: 1rem;
 }
 
 .video-details-card-footer {

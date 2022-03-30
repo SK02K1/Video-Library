@@ -1,12 +1,22 @@
-import { useLocation, useNavigate } from 'react-router-dom';
 import './VideoDetailsCard.css';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth, useVideosData } from '../../contexts';
+import { isAlreadyInHistory } from '../../utils';
+import { handleRemoveFromHistory } from '../../services';
 
 export const VideoDetailsCard = ({ videoDetails }) => {
   const { _id, title, creator, creatorAvatar } = videoDetails;
+  const [showCardControls, setShowCardControls] = useState(false);
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { userData } = useAuth();
+  const {
+    videosDataState: { history },
+    dispatchVideosData,
+  } = useVideosData();
 
-  const showSingleVideo = (videoID) => navigate(`${pathname}/${videoID}`);
+  const showSingleVideo = (videoID) => navigate(`/videos/${videoID}`);
+  const isInHistory = isAlreadyInHistory(_id, history);
 
   return (
     <div className='video-details-card'>
@@ -32,7 +42,37 @@ export const VideoDetailsCard = ({ videoDetails }) => {
           />
           <span className='creator-name m-xs-l text-sm'>{creator}</span>
         </div>
-        <div className='video-details-card-controls'>
+        <div
+          onClick={() => setShowCardControls((prev) => !prev)}
+          className='video-details-card-controls text-sm'
+        >
+          {showCardControls && (
+            <div className='video-card-controls'>
+              <div className='video-card-control m-xs-tb'>
+                <span className='material-icons'>watch_later</span>
+                add to watch later
+              </div>
+              <div className='video-card-control m-xs-tb'>
+                <span className='material-icons'>playlist_add</span>
+                add to playlist
+              </div>
+              {isInHistory && (
+                <div
+                  onClick={() =>
+                    handleRemoveFromHistory({
+                      videoID: _id,
+                      userData,
+                      dispatchVideosData,
+                    })
+                  }
+                  className='video-card-control m-xs-tb'
+                >
+                  <span className='material-icons'>delete</span>
+                  Remove from history
+                </div>
+              )}
+            </div>
+          )}
           <span className='material-icons-outlined'>more_vert</span>
         </div>
       </div>
