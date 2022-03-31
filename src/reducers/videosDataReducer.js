@@ -11,7 +11,7 @@ export const videosDataReducer = (state, { type, payload }) => {
     case VIDEOS_ACTIONS.CLEAR_HISTORY:
       return { ...state, history: [] };
     case VIDEOS_ACTIONS.RESET_VIDEOS_DATA:
-      return { ...state, history: [] };
+      return { ...state, history: [], playlists: [] };
     default:
       return { ...state };
   }
