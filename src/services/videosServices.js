@@ -97,3 +97,28 @@ export const handleCreatePlaylist = async ({
     toast.error(error.message);
   }
 };
+
+export const handleDeletePlaylist = async ({
+  playlistID,
+  dispatchVideosData,
+  userData,
+}) => {
+  try {
+    const {
+      data: { playlists },
+      status,
+    } = await axios.delete(`/api/user/playlists/${playlistID}`, {
+      headers: { authorization: userData.encodedToken },
+    });
+    if (status === 200) {
+      dispatchVideosData({
+        type: VIDEOS_ACTIONS.UPDATE_PLAYLISTS,
+        payload: { updatedPlaylists: playlists },
+      });
+      toast.success('Playlist successfully deleted');
+    }
+  } catch (error) {
+    console.error(error.response);
+    toast.error('Error in deleting playlist');
+  }
+};
