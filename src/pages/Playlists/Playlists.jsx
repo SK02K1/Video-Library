@@ -1,4 +1,5 @@
 import { useVideosData } from '../../contexts/videosData-context';
+import { PlaylistCard } from '../../components';
 
 export const Playlists = () => {
   const {
@@ -10,6 +11,11 @@ export const Playlists = () => {
       <p className='text-center m-xs-tb'>
         You have created {playlists.length} playlist
       </p>
+      <div className='grid-container auto m-md-tb'>
+        {playlists.map((playlist) => (
+          <PlaylistCard key={playlist._id} playlist={playlist} />
+        ))}
+      </div>
     </div>
   );
 };
