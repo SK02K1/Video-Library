@@ -67,3 +67,33 @@ export const handleRemoveFromHistory = async ({
     console.error(error.response);
   }
 };
+
+export const handleCreatePlaylist = async ({
+  e,
+  title,
+  dispatchVideosData,
+  setTitle,
+  userData,
+}) => {
+  e.preventDefault();
+  try {
+    const {
+      data: { playlists },
+      status,
+    } = await axios.post(
+      '/api/user/playlists',
+      { playlist: { title } },
+      { headers: { authorization: userData.encodedToken } }
+    );
+    if (status === 201) {
+      dispatchVideosData({
+        type: VIDEOS_ACTIONS.UPDATE_PLAYLISTS,
+        payload: { updatedPlaylists: playlists },
+      });
+      toast.success('Playlist successfully created');
+      setTitle('');
+    }
+  } catch (error) {
+    toast.error(error.message);
+  }
+};

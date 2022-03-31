@@ -1,17 +1,17 @@
-import { usePlaylistModal } from '../../contexts';
 import './PlaylistModal.css';
-
-const dummyPlaylistData = [
-  { id: 1, title: 'playlist-1' },
-  { id: 2, title: 'playlist-2' },
-  { id: 3, title: 'playlist-3' },
-  { id: 4, title: 'playlist-4' },
-  { id: 5, title: 'playlist-5' },
-];
+import { useState } from 'react';
+import { useAuth, usePlaylistModal, useVideosData } from '../../contexts';
+import { handleCreatePlaylist } from '../../services';
 
 export const PlaylistModal = () => {
+  const [title, setTitle] = useState('');
+  const { userData } = useAuth();
   const { isPlaylistModalActive, togglePlaylistModalState } =
     usePlaylistModal();
+  const {
+    videosDataState: { playlists },
+    dispatchVideosData,
+  } = useVideosData();
 
   const handlePlaylistModal = (e) => {
     const classList = e.target.classList;
@@ -33,21 +33,34 @@ export const PlaylistModal = () => {
           <span className='material-icons icon-close'>close</span>
         </div>
         <ul role='list' className='playlist-modal-body m-sm-b list'>
-          {dummyPlaylistData.map(({ id, title }) => (
-            <li key={id} className='list-item'>
-              <label htmlFor={title}>
-                <input type='checkbox' name='playlist' id={title} />
+          {playlists.map(({ _id, title }) => (
+            <li key={_id} className='list-item'>
+              <label htmlFor={_id + title}>
+                <input type='checkbox' name='playlist' id={_id + title} />
                 <span className='m-sm-l'>{title}</span>
               </label>
             </li>
           ))}
         </ul>
         <div className='playlist-modal-footer m-sm-b'>
-          <form>
+          <form
+            onSubmit={(e) =>
+              handleCreatePlaylist({
+                e,
+                title,
+                setTitle,
+                dispatchVideosData,
+                userData,
+              })
+            }
+          >
             <input
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
               className='input m-xs-r'
               type='text'
               placeholder='create new playlist'
+              required
             />
             <button className='btn btn-fab'>
               <span className='material-icons'>add</span>

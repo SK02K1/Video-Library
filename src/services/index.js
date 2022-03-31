@@ -3,4 +3,5 @@ export {
   handleAddToHistory,
   handleClearHistory,
   handleRemoveFromHistory,
+  handleCreatePlaylist,
 } from './videosServices';
