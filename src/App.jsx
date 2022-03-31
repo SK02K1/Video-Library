@@ -10,7 +10,7 @@ import {
   SingleVideo,
   Videos,
 } from './pages';
-import { Navigation, PrivateRoute } from './components';
+import { Navigation, PlaylistModal, PrivateRoute } from './components';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
     <div className='App'>
       <Toaster position='top-right' />
       <Navigation />
+      <PlaylistModal />
       <Routes>
         {/* Public Routes */}
         <Route path='/' element={<Home />} />

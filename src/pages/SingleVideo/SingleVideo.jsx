@@ -4,7 +4,7 @@ import { useAxios } from '../../hooks';
 import { Loader } from '../../components';
 import { useState, useEffect } from 'react';
 import { isAlreadyInHistory } from '../../utils';
-import { useAuth, useVideosData } from '../../contexts';
+import { useAuth, usePlaylistModal, useVideosData } from '../../contexts';
 import { handleAddToHistory } from '../../services';
 
 export const SingleVideo = () => {
@@ -13,6 +13,7 @@ export const SingleVideo = () => {
   const [video, setVideo] = useState({});
   const { title, description } = video;
   const { userData } = useAuth();
+  const { togglePlaylistModalState } = usePlaylistModal();
   const {
     videosDataState: { history },
     dispatchVideosData,
@@ -48,7 +49,9 @@ export const SingleVideo = () => {
       <div className='video-controls m-md-tb'>
         <span className='material-icons'>thumb_up</span>
         <span className='material-icons'>thumb_down_alt</span>
-        <span className='material-icons'>playlist_add</span>
+        <span onClick={togglePlaylistModalState} className='material-icons'>
+          playlist_add
+        </span>
         <span className='material-icons'>watch_later</span>
         <span className='material-icons'>share</span>
       </div>

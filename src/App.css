@@ -7,6 +7,7 @@
   --white: #ffffff;
   --black: #131313;
   --gray: #232323;
+  --transparent-black: rgba(0, 0, 0, 0.8);
 
   /* PRIMARY */
   --clr-primary-500: #e95050;

@@ -10,6 +10,7 @@ import {
   CategoriesProvider,
   VideosDataProvider,
 } from './contexts';
+import { PlaylistModalProvider } from './contexts';
 
 // Call make Server
 makeServer();
@@ -20,7 +21,9 @@ ReactDOM.render(
       <AuthProvider>
         <VideosDataProvider>
           <CategoriesProvider>
-            <App />
+            <PlaylistModalProvider>
+              <App />
+            </PlaylistModalProvider>
           </CategoriesProvider>
         </VideosDataProvider>
       </AuthProvider>
