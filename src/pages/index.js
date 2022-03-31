@@ -5,3 +5,4 @@ export { Login } from './Login/Login';
 export { Signup } from './Signup/Signup';
 export { Profile } from './Profile/Profile';
 export { History } from './History/History';
+export { Playlists } from './Playlists/Playlists';

@@ -4,6 +4,7 @@ import {
   History,
   Home,
   Login,
+  Playlists,
   Profile,
   Signup,
   SingleVideo,
@@ -29,6 +30,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
           <Route path='/history' element={<History />} />
+          <Route path='/playlists' element={<Playlists />} />
         </Route>
       </Routes>
     </div>
