@@ -1,5 +1,5 @@
 import './SingleVideo.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAxios } from '../../hooks';
 import { Loader } from '../../components';
 import { useState, useEffect } from 'react';
@@ -13,12 +13,21 @@ export const SingleVideo = () => {
   const [video, setVideo] = useState({});
   const { title, description } = video;
   const { userData } = useAuth();
+  const navigate = useNavigate();
   const { togglePlaylistModalState } = usePlaylistModal();
   const {
     videosDataState: { history },
     dispatchVideosData,
   } = useVideosData();
   const isInHistory = isAlreadyInHistory(videoID, history);
+
+  const handleAddToPlaylist = () => {
+    if (userData) {
+      togglePlaylistModalState();
+    } else {
+      navigate('/login');
+    }
+  };
 
   useEffect(() => {
     if (data?.video) {
@@ -49,7 +58,7 @@ export const SingleVideo = () => {
       <div className='video-controls m-md-tb'>
         <span className='material-icons'>thumb_up</span>
         <span className='material-icons'>thumb_down_alt</span>
-        <span onClick={togglePlaylistModalState} className='material-icons'>
+        <span onClick={handleAddToPlaylist} className='material-icons'>
           playlist_add
         </span>
         <span className='material-icons'>watch_later</span>

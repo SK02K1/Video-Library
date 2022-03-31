@@ -16,6 +16,14 @@ export const VideoDetailsCard = ({ videoDetails }) => {
     dispatchVideosData,
   } = useVideosData();
 
+  const handleAddToPlaylist = () => {
+    if (userData) {
+      togglePlaylistModalState();
+    } else {
+      navigate('/login');
+    }
+  };
+
   const showSingleVideo = (videoID) => navigate(`/videos/${videoID}`);
   const isInHistory = isAlreadyInHistory(_id, history);
 
@@ -54,7 +62,7 @@ export const VideoDetailsCard = ({ videoDetails }) => {
                 add to watch later
               </div>
               <div
-                onClick={togglePlaylistModalState}
+                onClick={handleAddToPlaylist}
                 className='video-card-control m-xs-tb'
               >
                 <span className='material-icons'>playlist_add</span>
