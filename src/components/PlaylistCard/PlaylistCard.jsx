@@ -3,7 +3,7 @@ import { useAuth, useVideosData } from '../../contexts';
 import { handleDeletePlaylist } from '../../services';
 
 export const PlaylistCard = ({ playlist }) => {
-  const { _id, title } = playlist;
+  const { _id, title, videos } = playlist;
   const { userData } = useAuth();
   const { dispatchVideosData } = useVideosData();
 
@@ -20,7 +20,9 @@ export const PlaylistCard = ({ playlist }) => {
       >
         delete
       </span>
-      <h2 className='text-lg'>{title}</h2>
+      <h2 className='text-lg'>
+        {title} ({videos.length})
+      </h2>
     </div>
   );
 };
