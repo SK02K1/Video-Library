@@ -14,7 +14,7 @@ export const SingleVideo = () => {
   const { title, description } = video;
   const { userData } = useAuth();
   const navigate = useNavigate();
-  const { togglePlaylistModalState } = usePlaylistModal();
+  const { togglePlaylistModalState, updateVideoDetails } = usePlaylistModal();
   const {
     videosDataState: { history },
     dispatchVideosData,
@@ -24,6 +24,7 @@ export const SingleVideo = () => {
   const handleAddToPlaylist = () => {
     if (userData) {
       togglePlaylistModalState();
+      updateVideoDetails(video);
     } else {
       navigate('/login');
     }

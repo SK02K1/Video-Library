@@ -122,3 +122,31 @@ export const handleDeletePlaylist = async ({
     toast.error('Error in deleting playlist');
   }
 };
+
+export const handleAddToPlaylist = async ({
+  video,
+  playlist: { _id },
+  userData,
+  dispatchVideosData,
+}) => {
+  try {
+    const {
+      data: { playlist },
+      status,
+    } = await axios.post(
+      `/api/user/playlists/${_id}`,
+      { video },
+      { headers: { authorization: userData.encodedToken } }
+    );
+    if (status === 201) {
+      dispatchVideosData({
+        type: VIDEOS_ACTIONS.ADD_TO_PLAYLIST,
+        payload: { playlist },
+      });
+      toast.success('Video successfully added');
+    }
+  } catch (error) {
+    console.error(error);
+    toast.error('Failed to add video in the playlist');
+  }
+};

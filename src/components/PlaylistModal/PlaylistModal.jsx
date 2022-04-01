@@ -1,12 +1,13 @@
 import './PlaylistModal.css';
 import { useState } from 'react';
 import { useAuth, usePlaylistModal, useVideosData } from '../../contexts';
-import { handleCreatePlaylist } from '../../services';
+import { handleAddToPlaylist, handleCreatePlaylist } from '../../services';
+import { isAlreadyInPlaylist } from '../../utils';
 
 export const PlaylistModal = () => {
   const [title, setTitle] = useState('');
   const { userData } = useAuth();
-  const { isPlaylistModalActive, togglePlaylistModalState } =
+  const { isPlaylistModalActive, togglePlaylistModalState, videoDetails } =
     usePlaylistModal();
   const {
     videosDataState: { playlists },
@@ -23,6 +24,20 @@ export const PlaylistModal = () => {
     }
   };
 
+  const playlistCheckboxHandler = (e, playlist) => {
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      handleAddToPlaylist({
+        video: videoDetails,
+        playlist,
+        userData,
+        dispatchVideosData,
+      });
+    } else {
+      console.log('remove from playlist');
+    }
+  };
+
   return (
     <div
       onClick={handlePlaylistModal}
@@ -33,14 +48,27 @@ export const PlaylistModal = () => {
           <span className='material-icons icon-close'>close</span>
         </div>
         <ul role='list' className='playlist-modal-body m-sm-b list'>
-          {playlists.map(({ _id, title }) => (
-            <li key={_id} className='list-item'>
-              <label htmlFor={_id + title}>
-                <input type='checkbox' name='playlist' id={_id + title} />
-                <span className='m-sm-l'>{title}</span>
-              </label>
-            </li>
-          ))}
+          {playlists.map((playlist) => {
+            const { _id, title } = playlist;
+            const videoIsInPlaylist = isAlreadyInPlaylist(
+              videoDetails,
+              playlist
+            );
+            return (
+              <li key={_id} className='list-item'>
+                <label htmlFor={_id + title}>
+                  <input
+                    onChange={(e) => playlistCheckboxHandler(e, playlist)}
+                    type='checkbox'
+                    name='playlist'
+                    id={_id + title}
+                    checked={videoIsInPlaylist}
+                  />
+                  <span className='m-sm-l'>{title}</span>
+                </label>
+              </li>
+            );
+          })}
         </ul>
         <div className='playlist-modal-footer m-sm-b'>
           <form
