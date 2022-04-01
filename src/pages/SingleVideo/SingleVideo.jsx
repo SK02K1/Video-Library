@@ -58,7 +58,6 @@ export const SingleVideo = () => {
       </div>
       <div className='video-controls m-md-tb'>
         <span className='material-icons'>thumb_up</span>
-        <span className='material-icons'>thumb_down_alt</span>
         <span onClick={handleAddToPlaylist} className='material-icons'>
           playlist_add
         </span>
