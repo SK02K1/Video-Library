@@ -12,7 +12,7 @@ export const videosDataReducer = (state, { type, payload }) => {
       return { ...state, history: [] };
     case VIDEOS_ACTIONS.UPDATE_PLAYLISTS:
       return { ...state, playlists: payload.updatedPlaylists };
-    case VIDEOS_ACTIONS.ADD_TO_PLAYLIST:
+    case VIDEOS_ACTIONS.TOGGLE_PLAYLIST_VIDEO:
       return {
         ...state,
         playlists: state.playlists.map((playlist) =>

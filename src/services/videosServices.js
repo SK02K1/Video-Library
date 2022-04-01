@@ -140,7 +140,7 @@ export const handleAddToPlaylist = async ({
     );
     if (status === 201) {
       dispatchVideosData({
-        type: VIDEOS_ACTIONS.ADD_TO_PLAYLIST,
+        type: VIDEOS_ACTIONS.TOGGLE_PLAYLIST_VIDEO,
         payload: { playlist },
       });
       toast.success('Video successfully added');
