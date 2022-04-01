@@ -4,12 +4,14 @@ import {
   History,
   Home,
   Login,
+  Playlists,
   Profile,
   Signup,
+  SinglePlaylist,
   SingleVideo,
   Videos,
 } from './pages';
-import { Navigation, PrivateRoute } from './components';
+import { Navigation, PlaylistModal, PrivateRoute } from './components';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
     <div className='App'>
       <Toaster position='top-right' />
       <Navigation />
+      <PlaylistModal />
       <Routes>
         {/* Public Routes */}
         <Route path='/' element={<Home />} />
@@ -29,6 +32,8 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
           <Route path='/history' element={<History />} />
+          <Route path='/playlists' element={<Playlists />} />
+          <Route path='/playlists/:playlistID' element={<SinglePlaylist />} />
         </Route>
       </Routes>
     </div>

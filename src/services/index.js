@@ -3,4 +3,8 @@ export {
   handleAddToHistory,
   handleClearHistory,
   handleRemoveFromHistory,
+  handleCreatePlaylist,
+  handleDeletePlaylist,
+  handleAddToPlaylist,
+  handleRemoveFromPlaylist,
 } from './videosServices';

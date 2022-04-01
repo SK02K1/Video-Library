@@ -1,7 +1,7 @@
 import './VideoDetailsCard.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth, useVideosData } from '../../contexts';
+import { useAuth, usePlaylistModal, useVideosData } from '../../contexts';
 import { isAlreadyInHistory } from '../../utils';
 import { handleRemoveFromHistory } from '../../services';
 
@@ -10,10 +10,20 @@ export const VideoDetailsCard = ({ videoDetails }) => {
   const [showCardControls, setShowCardControls] = useState(false);
   const navigate = useNavigate();
   const { userData } = useAuth();
+  const { togglePlaylistModalState, updateVideoDetails } = usePlaylistModal();
   const {
     videosDataState: { history },
     dispatchVideosData,
   } = useVideosData();
+
+  const handleAddToPlaylist = () => {
+    if (userData) {
+      updateVideoDetails(videoDetails);
+      togglePlaylistModalState();
+    } else {
+      navigate('/login');
+    }
+  };
 
   const showSingleVideo = (videoID) => navigate(`/videos/${videoID}`);
   const isInHistory = isAlreadyInHistory(_id, history);
@@ -52,7 +62,10 @@ export const VideoDetailsCard = ({ videoDetails }) => {
                 <span className='material-icons'>watch_later</span>
                 add to watch later
               </div>
-              <div className='video-card-control m-xs-tb'>
+              <div
+                onClick={handleAddToPlaylist}
+                className='video-card-control m-xs-tb'
+              >
                 <span className='material-icons'>playlist_add</span>
                 add to playlist
               </div>
