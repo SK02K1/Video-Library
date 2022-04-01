@@ -16,8 +16,17 @@
 
 .video-controls span {
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 0.5rem;
+  opacity: 0.5;
+}
+
+.video-controls .active-true {
+  opacity: 1;
+}
+
+.video-controls span:hover {
+  opacity: 1;
 }
 
 @media screen and (min-width: 800px) {

@@ -3,6 +3,7 @@ import './App.css';
 import {
   History,
   Home,
+  Liked,
   Login,
   Playlists,
   Profile,
@@ -34,6 +35,7 @@ function App() {
           <Route path='/history' element={<History />} />
           <Route path='/playlists' element={<Playlists />} />
           <Route path='/playlists/:playlistID' element={<SinglePlaylist />} />
+          <Route path='/liked' element={<Liked />} />
         </Route>
       </Routes>
     </div>

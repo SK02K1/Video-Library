@@ -2,8 +2,8 @@ import './VideoDetailsCard.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth, usePlaylistModal, useVideosData } from '../../contexts';
-import { isAlreadyInHistory } from '../../utils';
-import { handleRemoveFromHistory } from '../../services';
+import { isAlreadyInHistory, isAlreadyLiked } from '../../utils';
+import { handleRemoveFromHistory, handleRemoveFromLikes } from '../../services';
 
 export const VideoDetailsCard = ({ videoDetails }) => {
   const { _id, title, creator, creatorAvatar } = videoDetails;
@@ -12,7 +12,7 @@ export const VideoDetailsCard = ({ videoDetails }) => {
   const { userData } = useAuth();
   const { togglePlaylistModalState, updateVideoDetails } = usePlaylistModal();
   const {
-    videosDataState: { history },
+    videosDataState: { history, likes },
     dispatchVideosData,
   } = useVideosData();
 
@@ -27,6 +27,7 @@ export const VideoDetailsCard = ({ videoDetails }) => {
 
   const showSingleVideo = (videoID) => navigate(`/videos/${videoID}`);
   const isInHistory = isAlreadyInHistory(_id, history);
+  const isLiked = isAlreadyLiked(_id, likes);
 
   return (
     <div className='video-details-card'>
@@ -82,6 +83,21 @@ export const VideoDetailsCard = ({ videoDetails }) => {
                 >
                   <span className='material-icons'>delete</span>
                   Remove from history
+                </div>
+              )}
+              {isLiked && (
+                <div
+                  onClick={() =>
+                    handleRemoveFromLikes({
+                      video: videoDetails,
+                      userData,
+                      dispatchVideosData,
+                    })
+                  }
+                  className='video-card-control m-xs-tb'
+                >
+                  <span className='material-icons'>delete</span>
+                  Remove from liked videos
                 </div>
               )}
             </div>

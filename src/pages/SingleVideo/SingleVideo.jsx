@@ -3,9 +3,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAxios } from '../../hooks';
 import { Loader } from '../../components';
 import { useState, useEffect } from 'react';
-import { isAlreadyInHistory } from '../../utils';
+import { isAlreadyInHistory, isAlreadyLiked } from '../../utils';
 import { useAuth, usePlaylistModal, useVideosData } from '../../contexts';
-import { handleAddToHistory } from '../../services';
+import {
+  handleAddToHistory,
+  handleAddToLikes,
+  handleRemoveFromLikes,
+} from '../../services';
 
 export const SingleVideo = () => {
   const { videoID } = useParams();
@@ -16,15 +20,26 @@ export const SingleVideo = () => {
   const navigate = useNavigate();
   const { togglePlaylistModalState, updateVideoDetails } = usePlaylistModal();
   const {
-    videosDataState: { history },
+    videosDataState: { history, likes },
     dispatchVideosData,
   } = useVideosData();
   const isInHistory = isAlreadyInHistory(videoID, history);
+  const isLiked = isAlreadyLiked(videoID, likes);
 
   const handleAddToPlaylist = () => {
     if (userData) {
       togglePlaylistModalState();
       updateVideoDetails(video);
+    } else {
+      navigate('/login');
+    }
+  };
+
+  const handleToggleLiked = () => {
+    if (userData) {
+      isLiked
+        ? handleRemoveFromLikes({ video, userData, dispatchVideosData })
+        : handleAddToLikes({ video, userData, dispatchVideosData });
     } else {
       navigate('/login');
     }
@@ -57,8 +72,12 @@ export const SingleVideo = () => {
         ></iframe>
       </div>
       <div className='video-controls m-md-tb'>
-        <span className='material-icons'>thumb_up</span>
-        <span className='material-icons'>thumb_down_alt</span>
+        <span
+          onClick={handleToggleLiked}
+          className={`material-icons active-${isLiked}`}
+        >
+          thumb_up
+        </span>
         <span onClick={handleAddToPlaylist} className='material-icons'>
           playlist_add
         </span>
