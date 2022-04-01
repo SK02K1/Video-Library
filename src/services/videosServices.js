@@ -203,3 +203,28 @@ export const handleAddToLikes = async ({
     console.error(error);
   }
 };
+
+export const handleRemoveFromLikes = async ({
+  video: { _id: videoID },
+  userData,
+  dispatchVideosData,
+}) => {
+  try {
+    const {
+      data: { likes },
+      status,
+    } = await axios.delete(`/api/user/likes/${videoID}`, {
+      headers: { authorization: userData.encodedToken },
+    });
+    if (status === 200) {
+      dispatchVideosData({
+        type: VIDEOS_ACTIONS.TOGGLE_LIKED_VIDEO,
+        payload: { updatedLikedVideos: likes },
+      });
+      toast.success('Removed from liked videos');
+    }
+  } catch (error) {
+    toast.error('Failed to remove from liked videos');
+    console.error(error);
+  }
+};

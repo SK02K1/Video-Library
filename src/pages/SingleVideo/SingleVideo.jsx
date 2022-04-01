@@ -5,7 +5,11 @@ import { Loader } from '../../components';
 import { useState, useEffect } from 'react';
 import { isAlreadyInHistory, isAlreadyLiked } from '../../utils';
 import { useAuth, usePlaylistModal, useVideosData } from '../../contexts';
-import { handleAddToHistory, handleAddToLikes } from '../../services';
+import {
+  handleAddToHistory,
+  handleAddToLikes,
+  handleRemoveFromLikes,
+} from '../../services';
 
 export const SingleVideo = () => {
   const { videoID } = useParams();
@@ -34,7 +38,7 @@ export const SingleVideo = () => {
   const handleToggleLiked = () => {
     if (userData) {
       isLiked
-        ? console.log('remove from liked videos')
+        ? handleRemoveFromLikes({ video, userData, dispatchVideosData })
         : handleAddToLikes({ video, userData, dispatchVideosData });
     } else {
       navigate('/login');
