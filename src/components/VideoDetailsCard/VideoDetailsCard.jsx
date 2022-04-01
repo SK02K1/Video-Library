@@ -10,7 +10,7 @@ export const VideoDetailsCard = ({ videoDetails }) => {
   const [showCardControls, setShowCardControls] = useState(false);
   const navigate = useNavigate();
   const { userData } = useAuth();
-  const { togglePlaylistModalState } = usePlaylistModal();
+  const { togglePlaylistModalState, updateVideoDetails } = usePlaylistModal();
   const {
     videosDataState: { history },
     dispatchVideosData,
@@ -18,6 +18,7 @@ export const VideoDetailsCard = ({ videoDetails }) => {
 
   const handleAddToPlaylist = () => {
     if (userData) {
+      updateVideoDetails(videoDetails);
       togglePlaylistModalState();
     } else {
       navigate('/login');
