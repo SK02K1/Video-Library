@@ -24,6 +24,10 @@
   display: flex;
 }
 
+.list {
+  list-style: none;
+}
+
 .content {
   height: inherit;
   overflow-y: scroll;

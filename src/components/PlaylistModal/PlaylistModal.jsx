@@ -56,7 +56,7 @@ export const PlaylistModal = () => {
         <div className='playlist-modal-header m-sm-b'>
           <span className='material-icons icon-close'>close</span>
         </div>
-        <ul role='list' className='playlist-modal-body m-sm-b list'>
+        <ul className='playlist-modal-body m-sm-b list'>
           {playlists.map((playlist) => {
             const { _id, title } = playlist;
             const videoIsInPlaylist = isAlreadyInPlaylist(
