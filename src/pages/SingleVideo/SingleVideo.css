@@ -21,6 +21,10 @@
   opacity: 0.5;
 }
 
+.video-controls .active-true {
+  opacity: 1;
+}
+
 .video-controls span:hover {
   opacity: 1;
 }

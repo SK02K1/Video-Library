@@ -19,6 +19,8 @@ export const videosDataReducer = (state, { type, payload }) => {
           playlist._id === payload.playlist._id ? payload.playlist : playlist
         ),
       };
+    case VIDEOS_ACTIONS.TOGGLE_LIKED_VIDEO:
+      return { ...state, likes: payload.updatedLikedVideos };
     case VIDEOS_ACTIONS.RESET_VIDEOS_DATA:
       return { ...state, history: [], playlists: [], likes: [] };
     default:
