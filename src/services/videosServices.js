@@ -150,3 +150,29 @@ export const handleAddToPlaylist = async ({
     toast.error('Failed to add video in the playlist');
   }
 };
+
+export const handleRemoveFromPlaylist = async ({
+  video: { _id: videoID },
+  playlist: { _id: playlistID },
+  userData,
+  dispatchVideosData,
+}) => {
+  try {
+    const {
+      data: { playlist },
+      status,
+    } = await axios.delete(`/api/user/playlists/${playlistID}/${videoID}`, {
+      headers: { authorization: userData.encodedToken },
+    });
+    if (status === 200) {
+      dispatchVideosData({
+        type: VIDEOS_ACTIONS.TOGGLE_PLAYLIST_VIDEO,
+        payload: { playlist },
+      });
+      toast.success('Video successfully removed');
+    }
+  } catch (error) {
+    toast.success('Failed to remove video from the playlist');
+    console.error(error);
+  }
+};

@@ -1,7 +1,11 @@
 import './PlaylistModal.css';
 import { useState } from 'react';
 import { useAuth, usePlaylistModal, useVideosData } from '../../contexts';
-import { handleAddToPlaylist, handleCreatePlaylist } from '../../services';
+import {
+  handleAddToPlaylist,
+  handleCreatePlaylist,
+  handleRemoveFromPlaylist,
+} from '../../services';
 import { isAlreadyInPlaylist } from '../../utils';
 
 export const PlaylistModal = () => {
@@ -34,7 +38,12 @@ export const PlaylistModal = () => {
         dispatchVideosData,
       });
     } else {
-      console.log('remove from playlist');
+      handleRemoveFromPlaylist({
+        video: videoDetails,
+        playlist,
+        userData,
+        dispatchVideosData,
+      });
     }
   };
 
