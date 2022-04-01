@@ -20,7 +20,7 @@ export const videosDataReducer = (state, { type, payload }) => {
         ),
       };
     case VIDEOS_ACTIONS.RESET_VIDEOS_DATA:
-      return { ...state, history: [], playlists: [] };
+      return { ...state, history: [], playlists: [], likes: [] };
     default:
       return { ...state };
   }
