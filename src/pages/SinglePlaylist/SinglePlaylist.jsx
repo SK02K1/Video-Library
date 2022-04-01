@@ -1,10 +1,54 @@
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useAuth, useVideosData } from '../../contexts';
+import { Loader, VideoDetailsCard } from '../../components';
 
 export const SinglePlaylist = () => {
+  const [playlistDetails, setPlaylistDetails] = useState({});
+  const {
+    videosDataState: { playlists },
+  } = useVideosData();
+  const { userData } = useAuth();
   const { playlistID } = useParams();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const {
+          data: { playlist },
+          status,
+        } = await axios.get(`/api/user/playlists/${playlistID}`, {
+          headers: { authorization: userData.encodedToken },
+        });
+        if (status === 200) {
+          setPlaylistDetails(playlist);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, [playlistID, userData, playlists]);
+
   return (
     <div className='content'>
-      <h1 className='text-center text-xl'>{playlistID}</h1>
+      {!playlistDetails?.videos && <Loader />}
+      {playlistDetails?.videos && (
+        <>
+          <h1 className='text-center text-xl m-sm-b'>
+            <span>{playlistDetails.title} </span>
+            <span>({playlistDetails.videos.length})</span>
+          </h1>
+          <div className='grid-container auto m-sm-b'>
+            {playlistDetails.videos.map((videoDetails) => (
+              <VideoDetailsCard
+                key={videoDetails._id}
+                videoDetails={videoDetails}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
