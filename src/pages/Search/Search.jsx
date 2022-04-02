@@ -40,6 +40,9 @@ export const Search = () => {
           />
         ))}
       </div>
+      {searchQuery && !Boolean(filteredVideos.length) && (
+        <p className='text-center m-sm-tb'>no video found</p>
+      )}
     </div>
   );
 };
