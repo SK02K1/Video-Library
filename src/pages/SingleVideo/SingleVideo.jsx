@@ -3,12 +3,18 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAxios } from '../../hooks';
 import { Loader } from '../../components';
 import { useState, useEffect } from 'react';
-import { isAlreadyInHistory, isAlreadyLiked } from '../../utils';
+import {
+  isAlreadyInHistory,
+  isAlreadyLiked,
+  isAlreadyInWatchLater,
+} from '../../utils';
 import { useAuth, usePlaylistModal, useVideosData } from '../../contexts';
 import {
   handleAddToHistory,
   handleAddToLikes,
   handleRemoveFromLikes,
+  handleAddToWatchLater,
+  handleRemoveFromWatchLater,
 } from '../../services';
 
 export const SingleVideo = () => {
@@ -20,11 +26,12 @@ export const SingleVideo = () => {
   const navigate = useNavigate();
   const { togglePlaylistModalState, updateVideoDetails } = usePlaylistModal();
   const {
-    videosDataState: { history, likes },
+    videosDataState: { history, likes, watchlater },
     dispatchVideosData,
   } = useVideosData();
   const isInHistory = isAlreadyInHistory(videoID, history);
   const isLiked = isAlreadyLiked(videoID, likes);
+  const isInWatchlater = isAlreadyInWatchLater(videoID, watchlater);
 
   const handleAddToPlaylist = () => {
     if (userData) {
@@ -40,6 +47,16 @@ export const SingleVideo = () => {
       isLiked
         ? handleRemoveFromLikes({ video, userData, dispatchVideosData })
         : handleAddToLikes({ video, userData, dispatchVideosData });
+    } else {
+      navigate('/login');
+    }
+  };
+
+  const handleToggleWatchlater = () => {
+    if (userData) {
+      isInWatchlater
+        ? handleRemoveFromWatchLater({ video, userData, dispatchVideosData })
+        : handleAddToWatchLater({ video, userData, dispatchVideosData });
     } else {
       navigate('/login');
     }
@@ -81,7 +98,12 @@ export const SingleVideo = () => {
         <span onClick={handleAddToPlaylist} className='material-icons'>
           playlist_add
         </span>
-        <span className='material-icons'>watch_later</span>
+        <span
+          onClick={handleToggleWatchlater}
+          className={`material-icons active-${isInWatchlater}`}
+        >
+          watch_later
+        </span>
         <span className='material-icons'>share</span>
       </div>
       <div className='video-details'>

@@ -10,6 +10,7 @@ const videosDataInitialState = {
   history: [],
   playlists: [],
   likes: [],
+  watchlater: [],
 };
 
 const VideosDataProvider = ({ children }) => {
@@ -21,10 +22,10 @@ const VideosDataProvider = ({ children }) => {
 
   useEffect(() => {
     if (userData) {
-      const { history, playlists, likes } = userData;
+      const { history, playlists, likes, watchlater } = userData;
       dispatchVideosData({
         type: VIDEOS_ACTIONS.INITIALIZE_VIDEOS_DATA,
-        payload: { videosData: { history, playlists, likes } },
+        payload: { videosData: { history, playlists, likes, watchlater } },
       });
     } else {
       dispatchVideosData({ type: VIDEOS_ACTIONS.RESET_VIDEOS_DATA });

@@ -32,7 +32,7 @@ export const desktopNavLinks = [
   },
   {
     id: 7,
-    linkTo: '/watch-later',
+    linkTo: '/watchlater',
     icon: 'watch_later',
   },
   {

@@ -9,4 +9,6 @@ export {
   handleRemoveFromPlaylist,
   handleAddToLikes,
   handleRemoveFromLikes,
+  handleAddToWatchLater,
+  handleRemoveFromWatchLater,
 } from './videosServices';
