@@ -11,6 +11,7 @@ import {
   handleRemoveFromHistory,
   handleRemoveFromLikes,
   handleRemoveFromWatchLater,
+  handleAddToWatchLater,
 } from '../../services';
 
 export const VideoDetailsCard = ({ videoDetails }) => {
@@ -68,10 +69,35 @@ export const VideoDetailsCard = ({ videoDetails }) => {
         >
           {showCardControls && (
             <div className='video-card-controls'>
-              <div className='video-card-control m-xs-tb'>
-                <span className='material-icons'>watch_later</span>
-                add to watch later
-              </div>
+              {isInWatchLater ? (
+                <div
+                  onClick={() =>
+                    handleRemoveFromWatchLater({
+                      video: videoDetails,
+                      userData,
+                      dispatchVideosData,
+                    })
+                  }
+                  className='video-card-control m-xs-tb'
+                >
+                  <span className='material-icons'>delete</span>
+                  Remove from watch later
+                </div>
+              ) : (
+                <div
+                  onClick={() =>
+                    handleAddToWatchLater({
+                      video: videoDetails,
+                      userData,
+                      dispatchVideosData,
+                    })
+                  }
+                  className='video-card-control m-xs-tb'
+                >
+                  <span className='material-icons'>watch_later</span>
+                  add to watch later
+                </div>
+              )}
               <div
                 onClick={handleAddToPlaylist}
                 className='video-card-control m-xs-tb'
@@ -107,21 +133,6 @@ export const VideoDetailsCard = ({ videoDetails }) => {
                 >
                   <span className='material-icons'>delete</span>
                   Remove from liked videos
-                </div>
-              )}
-              {isInWatchLater && (
-                <div
-                  onClick={() =>
-                    handleRemoveFromWatchLater({
-                      video: videoDetails,
-                      userData,
-                      dispatchVideosData,
-                    })
-                  }
-                  className='video-card-control m-xs-tb'
-                >
-                  <span className='material-icons'>delete</span>
-                  Remove from watch later
                 </div>
               )}
             </div>
