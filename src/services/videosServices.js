@@ -228,3 +228,30 @@ export const handleRemoveFromLikes = async ({
     console.error(error);
   }
 };
+
+export const handleAddToWatchLater = async ({
+  video,
+  userData,
+  dispatchVideosData,
+}) => {
+  try {
+    const {
+      data: { watchlater },
+      status,
+    } = await axios.post(
+      '/api/user/watchlater',
+      { video },
+      { headers: { authorization: userData.encodedToken } }
+    );
+    if (status === 201) {
+      dispatchVideosData({
+        type: VIDEOS_ACTIONS.TOGGLE_WATCH_LATER_VIDEO,
+        payload: { updatedWatchLater: watchlater },
+      });
+      toast.success('Added to watch later');
+    }
+  } catch (error) {
+    toast.error('Failed to add in watch later');
+    console.error(error);
+  }
+};

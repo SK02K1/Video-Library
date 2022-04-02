@@ -8,3 +8,4 @@ export { profileControls } from './Profile/profileControls';
 export { isAlreadyInHistory } from './Video/isAlreadyInHistory.js';
 export { isAlreadyInPlaylist } from './Video//isAlreadyInPlaylist';
 export { isAlreadyLiked } from './Video/isAlreadyLiked.js';
+export { isAlreadyInWatchLater } from './Video/isAlreadyInWatchLater';

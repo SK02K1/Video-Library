@@ -21,6 +21,8 @@ export const videosDataReducer = (state, { type, payload }) => {
       };
     case VIDEOS_ACTIONS.TOGGLE_LIKED_VIDEO:
       return { ...state, likes: payload.updatedLikedVideos };
+    case VIDEOS_ACTIONS.TOGGLE_WATCH_LATER_VIDEO:
+      return { ...state, watchlater: payload.updatedWatchLater };
     case VIDEOS_ACTIONS.RESET_VIDEOS_DATA:
       return {
         ...state,
