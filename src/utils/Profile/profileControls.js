@@ -4,7 +4,7 @@ export const profileControls = [
   {
     id: uuid(),
     controlName: 'Watch later',
-    linkTo: '/watch-later',
+    linkTo: '/watchlater',
     iconName: 'watch_later',
   },
   {

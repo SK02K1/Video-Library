@@ -11,6 +11,7 @@ import {
   SinglePlaylist,
   SingleVideo,
   Videos,
+  WatchLater,
 } from './pages';
 import { Navigation, PlaylistModal, PrivateRoute } from './components';
 import { Toaster } from 'react-hot-toast';
@@ -36,6 +37,7 @@ function App() {
           <Route path='/playlists' element={<Playlists />} />
           <Route path='/playlists/:playlistID' element={<SinglePlaylist />} />
           <Route path='/liked' element={<Liked />} />
+          <Route path='/watchlater' element={<WatchLater />} />
         </Route>
       </Routes>
     </div>
