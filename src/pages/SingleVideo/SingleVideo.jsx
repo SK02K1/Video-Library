@@ -14,6 +14,7 @@ import {
   handleAddToLikes,
   handleRemoveFromLikes,
   handleAddToWatchLater,
+  handleRemoveFromWatchLater,
 } from '../../services';
 
 export const SingleVideo = () => {
@@ -54,7 +55,7 @@ export const SingleVideo = () => {
   const handleToggleWatchlater = () => {
     if (userData) {
       isInWatchlater
-        ? console.log('remove from watch later')
+        ? handleRemoveFromWatchLater({ video, userData, dispatchVideosData })
         : handleAddToWatchLater({ video, userData, dispatchVideosData });
     } else {
       navigate('/login');

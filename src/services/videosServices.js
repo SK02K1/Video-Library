@@ -255,3 +255,28 @@ export const handleAddToWatchLater = async ({
     console.error(error);
   }
 };
+
+export const handleRemoveFromWatchLater = async ({
+  video: { _id: videoID },
+  userData,
+  dispatchVideosData,
+}) => {
+  try {
+    const {
+      data: { watchlater },
+      status,
+    } = await axios.delete(`/api/user/watchlater/${videoID}`, {
+      headers: { authorization: userData.encodedToken },
+    });
+    if (status === 200) {
+      dispatchVideosData({
+        type: VIDEOS_ACTIONS.TOGGLE_WATCH_LATER_VIDEO,
+        payload: { updatedWatchLater: watchlater },
+      });
+      toast.success('Removed from watch later');
+    }
+  } catch (error) {
+    toast.error('Failed to remove from watch later');
+    console.error(error);
+  }
+};
