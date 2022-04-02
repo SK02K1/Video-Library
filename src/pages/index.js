@@ -9,3 +9,4 @@ export { Playlists } from './Playlists/Playlists';
 export { SinglePlaylist } from './SinglePlaylist/SinglePlaylist';
 export { Liked } from './Liked/Liked';
 export { WatchLater } from './WatchLater/WatchLater';
+export { Search } from './Search/Search';

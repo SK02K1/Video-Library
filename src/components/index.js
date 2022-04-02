@@ -9,3 +9,4 @@ export { SignupForm } from './Forms/SignupForm';
 export { PrivateRoute } from './PrivateRoute/PrivateRoute';
 export { PlaylistModal } from './PlaylistModal/PlaylistModal';
 export { PlaylistCard } from './PlaylistCard/PlaylistCard';
+export { SearchBar } from './SearchBar/SearchBar';

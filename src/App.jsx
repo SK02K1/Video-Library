@@ -7,6 +7,7 @@ import {
   Login,
   Playlists,
   Profile,
+  Search,
   Signup,
   SinglePlaylist,
   SingleVideo,
@@ -29,6 +30,7 @@ function App() {
         <Route path='/videos/:videoID' element={<SingleVideo />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/search' element={<Search />} />
 
         {/* Private Routes */}
         <Route element={<PrivateRoute />}>
