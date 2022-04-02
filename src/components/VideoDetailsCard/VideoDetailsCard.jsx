@@ -2,8 +2,16 @@ import './VideoDetailsCard.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth, usePlaylistModal, useVideosData } from '../../contexts';
-import { isAlreadyInHistory, isAlreadyLiked } from '../../utils';
-import { handleRemoveFromHistory, handleRemoveFromLikes } from '../../services';
+import {
+  isAlreadyInHistory,
+  isAlreadyLiked,
+  isAlreadyInWatchLater,
+} from '../../utils';
+import {
+  handleRemoveFromHistory,
+  handleRemoveFromLikes,
+  handleRemoveFromWatchLater,
+} from '../../services';
 
 export const VideoDetailsCard = ({ videoDetails }) => {
   const { _id, title, creator, creatorAvatar } = videoDetails;
@@ -12,7 +20,7 @@ export const VideoDetailsCard = ({ videoDetails }) => {
   const { userData } = useAuth();
   const { togglePlaylistModalState, updateVideoDetails } = usePlaylistModal();
   const {
-    videosDataState: { history, likes },
+    videosDataState: { history, likes, watchlater },
     dispatchVideosData,
   } = useVideosData();
 
@@ -28,6 +36,7 @@ export const VideoDetailsCard = ({ videoDetails }) => {
   const showSingleVideo = (videoID) => navigate(`/videos/${videoID}`);
   const isInHistory = isAlreadyInHistory(_id, history);
   const isLiked = isAlreadyLiked(_id, likes);
+  const isInWatchLater = isAlreadyInWatchLater(_id, watchlater);
 
   return (
     <div className='video-details-card'>
@@ -98,6 +107,21 @@ export const VideoDetailsCard = ({ videoDetails }) => {
                 >
                   <span className='material-icons'>delete</span>
                   Remove from liked videos
+                </div>
+              )}
+              {isInWatchLater && (
+                <div
+                  onClick={() =>
+                    handleRemoveFromWatchLater({
+                      video: videoDetails,
+                      userData,
+                      dispatchVideosData,
+                    })
+                  }
+                  className='video-card-control m-xs-tb'
+                >
+                  <span className='material-icons'>delete</span>
+                  Remove from watch later
                 </div>
               )}
             </div>
