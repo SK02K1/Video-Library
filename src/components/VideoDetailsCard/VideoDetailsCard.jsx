@@ -25,6 +25,11 @@ export const VideoDetailsCard = ({ videoDetails }) => {
     dispatchVideosData,
   } = useVideosData();
 
+  const showSingleVideo = (videoID) => navigate(`/videos/${videoID}`);
+  const isInHistory = isAlreadyInHistory(_id, history);
+  const isLiked = isAlreadyLiked(_id, likes);
+  const isInWatchLater = isAlreadyInWatchLater(_id, watchlater);
+
   const handleAddToPlaylist = () => {
     if (userData) {
       updateVideoDetails(videoDetails);
@@ -34,10 +39,23 @@ export const VideoDetailsCard = ({ videoDetails }) => {
     }
   };
 
-  const showSingleVideo = (videoID) => navigate(`/videos/${videoID}`);
-  const isInHistory = isAlreadyInHistory(_id, history);
-  const isLiked = isAlreadyLiked(_id, likes);
-  const isInWatchLater = isAlreadyInWatchLater(_id, watchlater);
+  const handleToggleWatchlater = () => {
+    if (userData) {
+      isInWatchLater
+        ? handleRemoveFromWatchLater({
+            video: videoDetails,
+            userData,
+            dispatchVideosData,
+          })
+        : handleAddToWatchLater({
+            video: videoDetails,
+            userData,
+            dispatchVideosData,
+          });
+    } else {
+      navigate('/login');
+    }
+  };
 
   return (
     <div className='video-details-card'>
@@ -71,13 +89,7 @@ export const VideoDetailsCard = ({ videoDetails }) => {
             <div className='video-card-controls'>
               {isInWatchLater ? (
                 <div
-                  onClick={() =>
-                    handleRemoveFromWatchLater({
-                      video: videoDetails,
-                      userData,
-                      dispatchVideosData,
-                    })
-                  }
+                  onClick={handleToggleWatchlater}
                   className='video-card-control m-xs-tb'
                 >
                   <span className='material-icons'>delete</span>
@@ -85,13 +97,7 @@ export const VideoDetailsCard = ({ videoDetails }) => {
                 </div>
               ) : (
                 <div
-                  onClick={() =>
-                    handleAddToWatchLater({
-                      video: videoDetails,
-                      userData,
-                      dispatchVideosData,
-                    })
-                  }
+                  onClick={handleToggleWatchlater}
                   className='video-card-control m-xs-tb'
                 >
                   <span className='material-icons'>watch_later</span>
