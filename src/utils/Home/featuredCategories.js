@@ -9,7 +9,7 @@ export const featuredCategories = [
   },
   {
     id: uuid(),
-    category: 'Sound Design',
+    category: 'Sound design',
     imgURL:
       'https://images.unsplash.com/photo-1615576447223-fc9e5fae1801?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
   },
