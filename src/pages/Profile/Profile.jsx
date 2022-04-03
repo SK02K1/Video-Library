@@ -3,8 +3,10 @@ import { handleLogout } from '../../services';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts';
 import './Profile.css';
+import { useDocumentTitle } from '../../hooks';
 
 export const Profile = () => {
+  useDocumentTitle('User profile');
   const {
     userData: { firstName, lastName, email },
     removeUserData,

@@ -1,6 +1,6 @@
 import './SingleVideo.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAxios } from '../../hooks';
+import { useAxios, useDocumentTitle } from '../../hooks';
 import { Loader } from '../../components';
 import { useState, useEffect } from 'react';
 import {
@@ -18,6 +18,7 @@ import {
 } from '../../services';
 
 export const SingleVideo = () => {
+  const { setDocumentTitle } = useDocumentTitle('Videos');
   const { videoID } = useParams();
   const { data, showLoader } = useAxios(`/api/video/${videoID}`);
   const [video, setVideo] = useState({});
@@ -65,8 +66,9 @@ export const SingleVideo = () => {
   useEffect(() => {
     if (data?.video) {
       setVideo(data.video);
+      setDocumentTitle(data.video.title);
     }
-  }, [data]);
+  }, [data, setDocumentTitle]);
 
   useEffect(() => {
     if (!isInHistory && userData && video?._id) {
