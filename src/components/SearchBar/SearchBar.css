@@ -1,0 +1,16 @@
+.search-bar {
+  position: relative;
+}
+
+.search-bar .input {
+  width: 100%;
+}
+
+.search-bar .icon-clear {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  color: var(--gray);
+  cursor: pointer;
+}
