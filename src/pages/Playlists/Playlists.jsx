@@ -1,7 +1,9 @@
 import { useVideosData } from '../../contexts/videosData-context';
 import { PlaylistCard } from '../../components';
+import { useDocumentTitle } from '../../hooks';
 
 export const Playlists = () => {
+  useDocumentTitle('Playlists');
   const {
     videosDataState: { playlists },
   } = useVideosData();

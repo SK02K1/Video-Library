@@ -1,7 +1,9 @@
 import { useVideosData } from '../../contexts';
 import { VideoDetailsCard } from '../../components';
+import { useDocumentTitle } from '../../hooks';
 
 export const Liked = () => {
+  useDocumentTitle('Liked videos');
   const {
     videosDataState: { likes },
   } = useVideosData();

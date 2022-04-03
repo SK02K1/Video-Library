@@ -3,6 +3,7 @@
   font-family: var(--ff-secondary);
   overflow: hidden;
   border-radius: var(--br);
+  cursor: pointer;
 }
 
 .category-card-overlay {
@@ -19,5 +20,6 @@
 }
 
 .category-card-overlay:hover {
+  background-color: rgba(0, 0, 0, 0.1);
   transform: scale(1.5);
 }

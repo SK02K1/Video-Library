@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth, useVideosData } from '../../contexts';
 import { Loader, VideoDetailsCard } from '../../components';
+import { useDocumentTitle } from '../../hooks';
 
 export const SinglePlaylist = () => {
+  const { setDocumentTitle } = useDocumentTitle('Playlists');
   const [playlistDetails, setPlaylistDetails] = useState({});
   const {
     videosDataState: { playlists },
@@ -23,12 +25,13 @@ export const SinglePlaylist = () => {
         });
         if (status === 200) {
           setPlaylistDetails(playlist);
+          setDocumentTitle(playlist.title);
         }
       } catch (error) {
         console.error(error);
       }
     })();
-  }, [playlistID, userData, playlists]);
+  }, [playlistID, userData, playlists, setDocumentTitle]);
 
   return (
     <div className='content'>

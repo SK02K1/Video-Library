@@ -3,8 +3,10 @@ import { useAuth, useVideosData } from '../../contexts';
 import { VideoDetailsCard } from '../../components';
 import { Link } from 'react-router-dom';
 import { handleClearHistory } from '../../services';
+import { useDocumentTitle } from '../../hooks';
 
 export const History = () => {
+  useDocumentTitle('History');
   const {
     videosDataState: { history },
     dispatchVideosData,

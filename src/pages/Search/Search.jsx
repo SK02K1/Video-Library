@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { SearchBar, Loader, VideoDetailsCard } from '../../components';
 import { useVideosData } from '../../contexts';
-import { useAxios } from '../../hooks';
+import { useAxios, useDocumentTitle } from '../../hooks';
 import { VIDEOS_ACTIONS } from '../../utils';
 import { filterVideosBySearchQuery } from '../../utils';
 
 export const Search = () => {
+  useDocumentTitle('Search');
   const [searchQuery, setSearchQuery] = useState('');
   const updateSearchQuery = (query) => setSearchQuery(query);
   const { data, showLoader } = useAxios('/api/videos');

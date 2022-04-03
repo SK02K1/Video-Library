@@ -1,7 +1,9 @@
 import { useVideosData } from '../../contexts';
 import { VideoDetailsCard } from '../../components';
+import { useDocumentTitle } from '../../hooks';
 
 export const WatchLater = () => {
+  useDocumentTitle('Watch later');
   const {
     videosDataState: { watchlater },
   } = useVideosData();

@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import { useAxios } from '../../hooks';
+import { useAxios, useDocumentTitle } from '../../hooks';
 import { useCategories, useVideosData } from '../../contexts';
 import { filterVideosByTag, VIDEOS_ACTIONS } from '../../utils';
 import { FilterChipBar, Loader, VideoDetailsCard } from '../../components';
 
 export const Videos = () => {
+  useDocumentTitle('Videos');
   const { data, showLoader } = useAxios('/api/videos');
   const {
     videosDataState: { videos },
