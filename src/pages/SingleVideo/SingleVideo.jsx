@@ -1,8 +1,9 @@
 import './SingleVideo.css';
-import { useNavigate, useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useAxios, useDocumentTitle } from '../../hooks';
 import { Loader } from '../../components';
-import { useState, useEffect } from 'react';
 import {
   isAlreadyInHistory,
   isAlreadyLiked,
@@ -20,6 +21,7 @@ import {
 export const SingleVideo = () => {
   const { setDocumentTitle } = useDocumentTitle('Videos');
   const { videoID } = useParams();
+  const { pathname } = useLocation();
   const { data, showLoader } = useAxios(`/api/video/${videoID}`);
   const [video, setVideo] = useState({});
   const { title, description } = video;
@@ -61,6 +63,11 @@ export const SingleVideo = () => {
     } else {
       navigate('/login');
     }
+  };
+
+  const handleShareVideo = () => {
+    navigator.clipboard.writeText(`https://focustv.netlify.app${pathname}`);
+    toast.success('Link copied');
   };
 
   useEffect(() => {
@@ -106,7 +113,9 @@ export const SingleVideo = () => {
         >
           watch_later
         </span>
-        <span className='material-icons'>share</span>
+        <span onClick={handleShareVideo} className='material-icons'>
+          share
+        </span>
       </div>
       <div className='video-details'>
         <h1 className='video-title text-xl m-xs-t'>{title}</h1>
