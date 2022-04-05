@@ -1,0 +1,8 @@
+.playlists-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--black);
+  border-radius: var(--br);
+}
