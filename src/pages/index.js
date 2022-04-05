@@ -10,3 +10,4 @@ export { SinglePlaylist } from './SinglePlaylist/SinglePlaylist';
 export { Liked } from './Liked/Liked';
 export { WatchLater } from './WatchLater/WatchLater';
 export { Search } from './Search/Search';
+export { NotFound } from './NotFound/NotFound';

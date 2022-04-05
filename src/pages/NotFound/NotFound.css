@@ -1,0 +1,13 @@
+.not-found {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@media screen and (min-width: 800px) {
+  .img-404 {
+    width: 50%;
+  }
+}
