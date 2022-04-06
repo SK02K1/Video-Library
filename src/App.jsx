@@ -5,6 +5,7 @@ import {
   Home,
   Liked,
   Login,
+  NotFound,
   Playlists,
   Profile,
   Search,
@@ -31,6 +32,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/search' element={<Search />} />
+        <Route path='*' element={<NotFound />} />
 
         {/* Private Routes */}
         <Route element={<PrivateRoute />}>
