@@ -1,14 +1,7 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-export const handleLogin = async ({
-  e,
-  email,
-  password,
-  saveUserData,
-  navigate,
-  from,
-}) => {
+export const handleLogin = async ({ e, email, password, saveUserData }) => {
   e.preventDefault();
   try {
     const { data, status } = await axios.post('/api/auth/login', {
@@ -18,7 +11,6 @@ export const handleLogin = async ({
     if (status === 200) {
       const { encodedToken, foundUser } = data;
       saveUserData({ encodedToken, ...foundUser });
-      navigate(from, { replace: true });
       toast.success('Successfully logged in');
     } else if (status === 201) {
       toast.error('Wrong Credentials');
@@ -31,7 +23,7 @@ export const handleLogin = async ({
   }
 };
 
-export const handleSignup = async ({ e, navigate, formData, saveUserData }) => {
+export const handleSignup = async ({ e, formData, saveUserData }) => {
   e.preventDefault();
   try {
     const { data, status } = await axios.post('/api/auth/signup', formData);
@@ -39,7 +31,6 @@ export const handleSignup = async ({ e, navigate, formData, saveUserData }) => {
       const { encodedToken, createdUser } = data;
       saveUserData({ encodedToken, ...createdUser });
       toast.success('Successfully signed in');
-      navigate('/');
     }
   } catch (error) {
     const { status } = error.response;
