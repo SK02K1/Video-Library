@@ -119,7 +119,7 @@ export const SingleVideo = () => {
       </div>
       <div className='video-details'>
         <h1 className='video-title text-xl m-xs-t'>{title}</h1>
-        <p className='video-description text-xs m-xs-t'>{description}</p>
+        <p className='video-description text-sm m-xs-t'>{description}</p>
       </div>
     </div>
   );
