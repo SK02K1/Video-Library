@@ -26,7 +26,7 @@ export const desktopNavLinks = [
   {
     id: 5,
     linkTo: '/liked',
-    icon: 'favorite',
+    icon: 'thumb_up',
     label: 'Liked',
   },
 
