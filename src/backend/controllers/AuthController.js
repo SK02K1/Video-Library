@@ -42,6 +42,7 @@ export const signupHandler = function (schema, request) {
     };
     const createdUser = schema.users.create(newUser);
     const encodedToken = sign({ _id, email }, process.env.REACT_APP_JWT_SECRET);
+    createdUser.password = undefined;
     return new Response(201, {}, { createdUser, encodedToken });
   } catch (error) {
     return new Response(
