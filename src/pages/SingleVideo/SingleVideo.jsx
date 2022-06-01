@@ -90,7 +90,7 @@ export const SingleVideo = () => {
       <div className='video-player-container'>
         <iframe
           className='player'
-          src={`https://www.youtube.com/embed/${videoID}`}
+          src={`https://www.youtube.com/embed/${videoID}?autoplay=1`}
           title='YouTube video player'
           frameBorder='0'
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
@@ -119,7 +119,7 @@ export const SingleVideo = () => {
       </div>
       <div className='video-details'>
         <h1 className='video-title text-xl m-xs-t'>{title}</h1>
-        <p className='video-description text-xs m-xs-t'>{description}</p>
+        <p className='video-description text-sm m-xs-t'>{description}</p>
       </div>
     </div>
   );

@@ -3,6 +3,8 @@
 }
 
 .navigation-link {
+  display: flex;
+  align-items: center;
   color: var(--white);
   opacity: 0.5;
 }
@@ -28,17 +30,17 @@
 }
 
 .large-screen-navigation {
-  flex-basis: 10rem;
+  flex-basis: 14rem;
   flex-grow: 0;
   flex-shrink: 0;
   display: none;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
-  padding: 1rem 0;
+  align-items: flex-start;
+  padding: 1rem 2rem;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
   .small-screen-navigation {
     display: none;
   }

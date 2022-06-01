@@ -1,6 +1,6 @@
 import './Forms.css';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { handleSignup } from '../../services/authServices';
 import { useAuth } from '../../contexts';
 
@@ -15,7 +15,6 @@ const formInitialState = {
 export const SignupForm = () => {
   const [formData, setFormData] = useState(formInitialState);
   const { firstName, lastName, email, password, termsAndConditions } = formData;
-  const navigate = useNavigate();
   const { saveUserData } = useAuth();
 
   const handleInput = (e) =>
@@ -37,7 +36,6 @@ export const SignupForm = () => {
           e,
           formData,
           saveUserData,
-          navigate,
         })
       }
       className='form'

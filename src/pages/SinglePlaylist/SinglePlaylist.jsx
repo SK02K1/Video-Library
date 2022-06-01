@@ -47,6 +47,7 @@ export const SinglePlaylist = () => {
               <VideoDetailsCard
                 key={videoDetails._id}
                 videoDetails={videoDetails}
+                playlistDetails={playlistDetails}
               />
             ))}
           </div>

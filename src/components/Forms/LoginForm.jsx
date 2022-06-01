@@ -1,12 +1,12 @@
 import './Forms.css';
 import { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts';
 import { handleLogin } from '../../services';
 
 const testCredentials = {
-  email: 'adarshbalika@gmail.com',
-  password: 'adarshBalika123',
+  email: 'ksourabh458@gmail.com',
+  password: '12345678',
   rememberMe: true,
 };
 
@@ -20,9 +20,6 @@ export const LoginForm = () => {
   const [formData, setFormData] = useState(formInitialState);
   const { email, password, rememberMe } = formData;
   const { saveUserData } = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
 
   const handleInput = (e) =>
     setFormData((prevFormData) => ({
@@ -43,8 +40,6 @@ export const LoginForm = () => {
           e,
           email,
           password,
-          navigate,
-          from,
           saveUserData,
         })
       }
