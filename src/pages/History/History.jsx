@@ -31,12 +31,14 @@ export const History = () => {
       </header>
       <div className='grid-container auto m-sm-tb'>
         {history.length ? (
-          history.map((videoDetails) => (
-            <VideoDetailsCard
-              key={videoDetails._id}
-              videoDetails={videoDetails}
-            />
-          ))
+          [...history]
+            .reverse()
+            .map((videoDetails) => (
+              <VideoDetailsCard
+                key={videoDetails._id}
+                videoDetails={videoDetails}
+              />
+            ))
         ) : (
           <div className='text-center'>
             <p className='m-xs-tb'>Nothing in the watch history</p>
